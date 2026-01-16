@@ -10,17 +10,15 @@ import java.util.List;
 @Repository
 interface AuthorRepository extends JpaRepository<Author, Long> {
 
-    List<Author> findByLastNameContainingIgnoreCase(String lastname);
+    List<Author> findByLastnameContainingIgnoreCase(String lastname);
 
-    List<Author> findByFisrtNameContainingIgnoreCase(String firstname);
+    List<Author> findByFirstnameContainingIgnoreCase(String firstname);
 
     Optional<Author> findByNationality(String nationality);
 
     @Query("SELECT a FROM Author a WHERE SIZE(a.books) >= :minBooks")
     List<Author> findAuthorsWithMinimumBooks(int minBooks);
 
-    // Vérifier si un auteur existe par nom
-    boolean existsByFirstNameAndLastName(String firstName, String lastName);
-
-
+    boolean existsByFirstnameAndLastname(String firstname, String lastname);
 }
+

@@ -24,6 +24,10 @@ public class Loan {
     @NotNull(message = "User is mandatory")
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
+
     @NotNull(message = "La date d'emprunt est obligatoire")
     @Column(name = "loan_date", nullable = false)
     private java.time.LocalDate loanDate;
@@ -72,5 +76,6 @@ public class Loan {
     }
 
 
-
+    public void setBook(Book book) {
+    }
 }

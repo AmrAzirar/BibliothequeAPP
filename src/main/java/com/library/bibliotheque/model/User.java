@@ -62,7 +62,7 @@ public class User {
     // Méthodes utilitaires pour gérer la relation avec Loan
     public void addLoan(Loan loan) {
         loans.add(loan);
-        loan.setUser((org.apache.catalina.User) this);
+        loan.setUser((User) this);
     }
 
     public void removeLoan(Loan loan) {
@@ -89,4 +89,5 @@ public class User {
                 .mapToDouble(Loan::getFineAmount)
                 .sum();
     }
+
 }
