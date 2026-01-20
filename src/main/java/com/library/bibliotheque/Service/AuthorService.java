@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Transactional
-class AuthorService implements IAuthorService {
+public class AuthorService implements IAuthorService {
     private AuthorRepository authorRepository;
     @Autowired
     public AuthorService(AuthorRepository authorRepository) {

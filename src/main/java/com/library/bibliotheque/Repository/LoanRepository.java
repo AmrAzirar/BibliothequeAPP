@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 
-interface LoanRepository extends JpaRepository<Loan, Long> {
+public interface LoanRepository extends JpaRepository<Loan, Long> {
 
     List<Loan> findByUser(User user);
 
@@ -51,5 +51,7 @@ interface LoanRepository extends JpaRepository<Loan, Long> {
     // Total des amendes d'un utilisateur
     @Query("SELECT SUM(l.fineAmount) FROM Loan l WHERE l.user.id = :userId")
     Double getTotalFinesByUserId(Long userId);
+
+    List<Loan> findByUserId(Long userId);
 }
 

@@ -78,4 +78,8 @@ public class Loan {
 
     public void setBook(Book book) {
     }
+
+    public Long getId() {
+        return loanid;
+    }
 }
