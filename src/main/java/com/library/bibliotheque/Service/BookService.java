@@ -3,6 +3,7 @@ import com.library.bibliotheque.model.Book;
 import com.library.bibliotheque.Repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -51,6 +52,59 @@ public class BookService implements IBookService {
     public Optional<Book> findByIsbn(String isbn) {
         return bookRepository.findByIsbn(isbn);
     }
+
+    @Override
+    public List<Book> searchBooksByTitle(String title) {
+        return BookRepository.findByTitleContainingIgnoreCase(title);
+
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Book> getBooksByAuthorId(Long authorId) {
+        return bookRepository.findbyAuthorId(authorId);
+
+    }
+    @Override
+    @Transactional(readOnly = true)
+    public List<Book> getAvailableBooks() {
+        return bookRepository.findAll().stream()
+                .filter(Book::getAvailable)
+                .toList();
+    }
+    @Override
+    @Transactional(readOnly = true)
+    public List<Book> getBooksByPublicationYear(Integer year) {
+        return bookRepository.findByPublicationYear(year);
+    }
+    @Override
+    public void markAsAvailable(Long id) {
+        Book Book = bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("livre non trouve avec l'id: " + id));
+        Book.setAvailable(true);
+        bookRepository.save(Book);
+
+        }
+
+    @Override
+    public void markAsUnavailable(Long id) {
+        Book Book = bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("livre non trouve avec l'id: " + id));
+        Book.setAvailable(false);
+        bookRepository.save(Book);
+
+    }
+    @Override
+    @Transactional(readOnly = true)
+    public boolean isBookAvailable(Long id) {
+        Book Book = bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("livre non trouve avec l'id: " + id));
+        return Book.getAvailable();
+    }
+
+
+
+
 
 
 }

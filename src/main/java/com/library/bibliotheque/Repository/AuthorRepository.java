@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 import java.util.List;
 @Repository
-interface AuthorRepository extends JpaRepository<Author, Long> {
+public interface AuthorRepository extends JpaRepository<Author, Long> {
 
     List<Author> findByLastnameContainingIgnoreCase(String lastname);
 
@@ -20,5 +20,9 @@ interface AuthorRepository extends JpaRepository<Author, Long> {
     List<Author> findAuthorsWithMinimumBooks(int minBooks);
 
     boolean existsByFirstnameAndLastname(String firstname, String lastname);
+
+    boolean existsByFirstNameAndLastnameIgnoreCase(String lastname);
+
+    boolean existsByFirstnameContainingIgnoreCase(String firstname);
 }
 

@@ -13,11 +13,19 @@ import java.util.Optional;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
+
+
+    static List<Book> findByTitleContainingIgnoreCase(String title) {
+        return BookRepository.findByTitleContainingIgnoreCase(title);
+    }
+
     //tu cherche un livre par son isbn
     Optional<Book> findByIsbn(String isbn);
     //tu verifie si un livre existe par son isbn
     boolean existsByIsbn(String isbn);
 
 
+    List<Book> findbyAuthorId(Long authorId);
 
+    List<Book> findByPublicationYear(Integer year);
 }

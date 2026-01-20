@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 @Repository
-interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
     //find user by email
     Optional<User> findByEmail(String email);
     //find users by last name containing ignore case
@@ -17,6 +17,8 @@ interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByActiveTrue();
     //find user by phone
     Optional<User> findByphoneNumber(String phoneNumber);
+    //deja eendo compte b dak l mail
+    boolean existsByEmail(String email);
 
     // Utilisateurs avec emprunts en retard
     @Query("SELECT DISTINCT u FROM User u JOIN u.loans l WHERE l.status = 'OVERDUE'")

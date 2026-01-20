@@ -20,4 +20,15 @@ public interface IBookService {
 
 
     Optional<Book> findByIsbn(String isbn);
+
+    // Recherches
+    List<Book> searchBooksByTitle(String title);
+    List<Book> getBooksByAuthorId(Long authorId);
+    List<Book> getAvailableBooks();
+    List<Book> getBooksByPublicationYear(Integer year);
+
+    // Opérations métier
+    void markAsAvailable(Long id);
+    void markAsUnavailable(Long id);
+    boolean isBookAvailable(Long id);
 }
