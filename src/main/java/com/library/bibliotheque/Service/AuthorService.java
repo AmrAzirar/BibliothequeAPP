@@ -22,10 +22,10 @@ public class AuthorService implements IAuthorService {
 
     @Override
     public Author createAuthor(Author author) {
-        if (authorRepository.existsByFirstnameContainingIgnoreCase(
-                author.getFirstname()
+        if (authorRepository.existsByFirstNameContainingIgnoreCase(
+                author.getFirstName()
         )) {
-            throw new RuntimeException("Author already exists with name: " + author.getFirstname());
+            throw new RuntimeException("Author already exists with name: " + author.getFirstName());
         }
         return authorRepository.save(author);
 
@@ -34,8 +34,8 @@ public class AuthorService implements IAuthorService {
     public Author updateAuthor(Long id, Author author) {
         Author existingAuthor = authorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Author not found with id: " + id));
-        existingAuthor.setFirstname(author.getFirstname());
-        existingAuthor.setLastname(author.getLastname());
+        existingAuthor.setFirstName(author.getFirstName());
+        existingAuthor.setLastName(author.getLastName());
         existingAuthor.setBiography(author.getBiography());
         existingAuthor.setNationality(author.getNationality());
         return authorRepository.save(existingAuthor);
@@ -60,7 +60,7 @@ public class AuthorService implements IAuthorService {
     @Override
     @Transactional(readOnly = true)
     public java.util.List<Author> searchAuthorsByLastName(String lastName) {
-        return authorRepository.findByLastnameContainingIgnoreCase(lastName);
+        return authorRepository.findByLastNameContainingIgnoreCase(lastName);
     }
     @Override
     @Transactional(readOnly = true)
@@ -68,12 +68,8 @@ public class AuthorService implements IAuthorService {
         return authorRepository.findAuthorsWithMinimumBooks(minBooks);
 
     }
-    @Override
-    @Transactional(readOnly = true)
-    public boolean authorExists(String firstName, String lastName) {
-        return authorRepository.existsByFirstnameContainingIgnoreCase(firstName) &&
-                authorRepository.existsByFirstNameAndLastnameIgnoreCase(lastName);
-    }
+
+
 
 
 }

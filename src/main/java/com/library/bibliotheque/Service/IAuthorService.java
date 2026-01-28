@@ -19,5 +19,5 @@ public interface IAuthorService {
 
     // Opérations métier
     List<Author> getAuthorsWithMinimumBooks(int minBooks);
-    boolean authorExists(String firstName, String lastName);
+
 }

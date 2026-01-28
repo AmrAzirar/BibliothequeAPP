@@ -10,19 +10,20 @@ import java.util.List;
 @Repository
 public interface AuthorRepository extends JpaRepository<Author, Long> {
 
-    List<Author> findByLastnameContainingIgnoreCase(String lastname);
+    List<Author> findByLastNameContainingIgnoreCase(String firstname );
 
-    List<Author> findByFirstnameContainingIgnoreCase(String firstname);
+    List<Author> findByFirstNameContainingIgnoreCase(String firstname );
 
     Optional<Author> findByNationality(String nationality);
 
     @Query("SELECT a FROM Author a WHERE SIZE(a.books) >= :minBooks")
     List<Author> findAuthorsWithMinimumBooks(int minBooks);
 
-    boolean existsByFirstnameAndLastname(String firstname, String lastname);
 
-    boolean existsByFirstNameAndLastnameIgnoreCase(String lastname);
 
-    boolean existsByFirstnameContainingIgnoreCase(String firstname);
+    boolean existsByFirstNameContainingIgnoreCase(String firstName);
+
+
+
 }
 

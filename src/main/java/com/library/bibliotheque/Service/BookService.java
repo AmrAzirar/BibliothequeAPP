@@ -62,7 +62,7 @@ public class BookService implements IBookService {
     @Override
     @Transactional(readOnly = true)
     public List<Book> getBooksByAuthorId(Long authorId) {
-        return bookRepository.findbyAuthorId(authorId);
+        return bookRepository.findByAuthorId(authorId);
 
     }
     @Override
