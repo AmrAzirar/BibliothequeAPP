@@ -62,17 +62,19 @@ public class User {
     }
 
     // Méthodes utilitaires pour gérer la relation avec Loan
+    @JsonIgnore
     public void addLoan(Loan loan) {
         loans.add(loan);
         loan.setUser((User) this);
     }
-
+    @JsonIgnore
     public void removeLoan(Loan loan) {
         loans.remove(loan);
         loan.setUser(null);
     }
 
     // Méthode pour obtenir les emprunts actifs
+    @JsonIgnore
     public List<Loan> getActiveLoans() {
         return loans.stream()
                 .filter(loan -> loan.getStatus().equals("ACTIVE") || loan.getStatus().equals("OVERDUE"))
@@ -86,6 +88,7 @@ public class User {
     }
 
     // Méthode pour calculer le total des amendes
+    @JsonIgnore
     public double getTotalFines() {
         return loans.stream()
                 .mapToDouble(Loan::getFineAmount)

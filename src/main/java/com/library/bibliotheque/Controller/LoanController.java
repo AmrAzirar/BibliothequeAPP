@@ -1,7 +1,7 @@
 package com.library.bibliotheque.Controller;
 
 import com.library.bibliotheque.model.Loan;
-import com.library.bibliotheque.service.LoanService;
+import com.library.bibliotheque.Service.LoanService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

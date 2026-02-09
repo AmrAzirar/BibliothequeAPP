@@ -1,4 +1,4 @@
-package com.library.bibliotheque.service;
+package com.library.bibliotheque.Service;
 
 import com.library.bibliotheque.Service.ILoanService;
 import com.library.bibliotheque.model.Book;
